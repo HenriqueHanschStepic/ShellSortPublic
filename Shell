@@ -1,0 +1,67 @@
+//Implementação do ShellSort em JAVA
+class Shell
+{
+    //Printa o array
+    public static void printArray(int arr[])
+    {
+        int h = arr.length;
+        for (int i=0; i<h; ++i)
+            System.out.print(arr[i] + " ");
+            System.out.println();
+            System.out.println();
+    }
+  
+    //Ordenação do array
+    int sort(int arr[])
+    {
+        int h = arr.length;
+  
+        //"Salto" definido conforme o tamanho do array dividido por 4, 
+        //depois 2 e por fim 1
+        System.out.println("Processo:");
+        for (int gap = h/4; gap > 0; gap /= 2)
+        {   
+            //Printa o processo de ordenação
+            for (int i=0; i<h; ++i) 
+            System.out.print(arr[i] + " ");
+            System.out.println();
+            
+            //Continua a separar até que esteja em ordem
+            for (int i = gap; i < h; i += 1)
+            {
+                //Abre posições
+                int temp = arr[i];
+
+                //Roda até encontrar a sua posição
+                int j;
+                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                    arr[j] = arr[j - gap];
+
+                //Posição correta
+                arr[j] = temp;               
+            }
+        }
+        return 0;
+    }
+  
+//Main
+    public static void main(String args[])
+    {
+        int arr[] = {28, 4, 24, 07, 36, 9, 21, 3, 2, 40, 
+                    8, 22, 18, 34, 15, 23, 14, 44, 11, 16,
+                    12, 42, 17, 20, 32, 26, 27, 1, 38, 30,
+                    31, 25, 33, 10, 35, 6, 37, 29, 39, 5,
+                    41, 19, 43, 13};
+        System.out.println(); 
+        System.out.println("Desordenado:");
+        printArray(arr);
+  
+        Shell ob = new Shell();
+        ob.sort(arr);
+
+        System.out.println();
+        System.out.println("Ordenado:");
+        printArray(arr);
+    }
+} 
+/*This code is contributed by Rajat Mishra */
